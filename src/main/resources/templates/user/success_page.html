@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success!</title>
+  </head>
+  <body>
+ <div id="content" class="flex justify-center items-center h-screen dark:bg-gray-900">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 max-w-md mx-auto">
+    <div class="text-center mb-4">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">Email Verification Successful!</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">Your email address has been successfully verified.</p>
+    </div>
+    <div class="text-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded dark:bg-blue-800 dark:hover:bg-blue-900" onclick="window.location.href='/login'">Proceed to Login</button>
+    </div>
+  </div>
+</div>
+ 
+
+    <script></script>
+  </body>
+</html>

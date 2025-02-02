@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-th-text="${loggedInUser.name}">Profile</title>
+</head>
+
+<body>
+  <h1>Welcome to Profile page</h1>
+
+
+  <div id="content">
+
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar.html :: user-sidebar}"></div>
+    
+<div class="sm:pl-64 pt-20 dark:bg-gray-900  h-screen">
+  <div class="flex justify-center">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-1/2">
+      <h2 class="text-lg font-bold mb-4 dark:text-gray-200 ">User Profile</h2>
+      <div class="flex justify-center mb-4">
+        <img src="https://picsum.photos/200/300" alt="Profile Picture" class="w-24 h-24 rounded-full transition duration-300 transform hover:scale-150  object-cover border-2 border-gray-300 dark:border-gray-600">
+      </div>
+      <div class="grid grid-cols-1 gap-4 mb-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg mt-5 shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+          <div class="flex justify-between">
+            <p class="text-lg font-bold dark:text-gray-200">Name:</p>
+            <p th:text="${loggedInUser.name}" class="dark:text-gray-400 text-lg font-medium"></p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+          <div class="flex justify-between">
+            <p class="text-lg font-bold dark:text-gray-200">Email:</p>
+            <p th:text="${loggedInUser.email}" class="dark:text-gray-400 text-lg font-medium"></p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+          <div class="flex justify-between">
+            <p class="text-lg font-bold dark:text-gray-200">Phone Number:</p>
+            <p th:text="${loggedInUser.phoneNumber}" class="dark:text-gray-400 text-lg font-medium"></p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+          <div class="flex justify-between">
+            <p class="text-lg font-bold dark:text-gray-200">About:</p>
+            <p th:text="${loggedInUser.About}" class="dark:text-gray-400 text-lg font-medium"></p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+          <div class="flex justify-between">
+            <p class="text-lg font-bold dark:text-gray-200">Contacts:</p>
+            <p th:text="${loggedInUser.contacts.size()}" class="dark:text-gray-400 text-lg font-medium"></p>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+  <div class="flex justify-between">
+    <p class="text-lg font-bold dark:text-gray-200">Email Verified:</p>
+    <p th:text="${loggedInUser.emailVerified} ? 'Yes' : 'No'" class="dark:text-gray-400 text-lg font-medium"></p>
+  </div>
+</div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+    
+
+  </div>
+  <script></script>
+</body>
+
+</html>

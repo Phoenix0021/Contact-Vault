@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-th-text="${loggedInUser.name}">Profile</title>
+</head>
+
+<body>
+  <h1>Welcome to Profile page</h1>
+
+
+  <div id="content">
+
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar.html :: user-sidebar}"></div>
+    
+<div class="sm:pl-64 pt-20 dark:bg-gray-900  h-screen">
+  <div class="flex items-center mb-6">
+    <img src="https://picsum.photos/200/300" alt="Profile Picture" class="w-24 h-24 rounded-full border-2 border-gray-300 dark:border-gray-600 mr-4">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome, <span class="text-blue-600" th:text="${loggedInUser.name}">User</span>!</h1>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- User Information Cards -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">Email</h2>
+      <p th:text="${loggedInUser.email}" class="dark:text-gray-400 text-lg font-medium"></p>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">Phone Number</h2>
+      <p th:text="${loggedInUser.phoneNumber}" class="dark:text-gray-400 text-lg font-medium"></p>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">About</h2>
+      <p th:text="${loggedInUser.about}" class="dark:text-gray-400 text-lg font-medium"></p>
+    </div>
+    <!-- Statistics Cards -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">Total Contacts</h2>
+      <p th:text="${loggedInUser.contacts.size()}" class="dark:text-gray-400 text-lg font-medium"></p>
+      <i class="fas fa-users text-gray-400 text-2xl"></i>
+    </div>
+   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+  <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">Calendar</h2>
+  <div class="calendar">
+    <div class="flex justify-between mb-4">
+      <button class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200" onclick="prevMonth()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <h3 id="month" class="text-lg font-bold text-gray-900 dark:text-gray-200"></h3>
+      <button class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200" onclick="nextMonth()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    
+    <div class="grid grid-cols-7 gap-2">
+      <div class="text-gray-600 dark:text-gray-400">Sun</div>
+      <div class="text-gray-600 dark:text-gray-400">Mon</div>
+      <div class="text-gray-600 dark:text-gray-400">Tue</div>
+      <div class="text-gray-600 dark:text-gray-400">Wed</div>
+      <div class="text-gray-600 dark:text-gray-400">Thu</div>
+      <div class="text-gray-600 dark:text-gray-400">Fri</div>
+      <div class="text-gray-600 dark:text-gray-400">Sat</div>
+    </div>
+    <div id="calendar-body" class="grid grid-cols-7 gap-2"></div>
+  </div>
+</div>
+
+<script>
+  const calendarBody = document.getElementById('calendar-body');
+  const monthElement = document.getElementById('month');
+
+  let date = new Date();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+
+  function renderCalendar() {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const firstDayOfWeek = firstDay.getDay();
+
+    let html = '';
+    for (let i = 0; i < firstDayOfWeek; i++) {
+      html += '<div class="text-gray-400 dark:text-gray-600"></div>';
+    }
+    for (let i = 1; i <= daysInMonth; i++) {
+      html += `<div class="text-gray-900 dark:text-gray-200">${i}</div>`;
+    }
+    calendarBody.innerHTML = html;
+    monthElement.textContent = date.toLocaleString('default', { month: 'long' });
+  }
+
+  function prevMonth() {
+    if (month === 0) {
+      month = 11;
+      year--;
+    } else {
+      month--;
+    }
+    date.setMonth(month);
+    renderCalendar();
+  }
+
+  function nextMonth() {
+    if (month === 11) {
+      month = 0;
+      year++;
+    } else {
+      month++;
+    }
+    date.setMonth(month);
+    renderCalendar();
+  }
+  function renderCalendar() {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const daysInMonth = lastDay.getDate();
+  const firstDayOfWeek = firstDay.getDay();
+  const today = new Date();
+  const todayDate = today.getDate();
+  const todayMonth = today.getMonth();
+  const todayYear = today.getFullYear();
+
+  let html = '';
+  for (let i = 0; i < firstDayOfWeek; i++) {
+    html += '<div class="text-gray-400 dark:text-gray-600"></div>';
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (i === todayDate && month === todayMonth && year === todayYear) {
+      html += `<div class="text-gray-900 dark:text-gray-200 bg-blue-500 rounded-full w-8 h-8 flex justify-center items-center">${i}</div>`;
+    } else {
+      html += `<div class="text-gray-900 dark:text-gray-200">${i}</div>`;
+    }
+  }
+  calendarBody.innerHTML = html;
+  monthElement.textContent = date.toLocaleString('default', { month: 'long' });
+}
+
+  renderCalendar();
+</script>
+    <!-- Important Links -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-gray-200 mb-2">Important Links</h2>
+      <ul>
+        <li class="mb-2"><a class="text-blue-600 hover:text-blue-800" href="/user/contacts">View Contacts</a></li>
+        <li class="mb-2"><a class="text-blue-600 hover:text-blue-800" href="/user/contacts/add">Add Contact</a></li>
+        <li class="mb-2"><a class="text-blue-600 hover:text-blue-800" href="/user/profile">Profile</a></li>
+        <li class="mb-2"><button class="text-blue-600 hover:text-blue-800" type="button" onclick="exportData()">Export Contacts</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+      </div>
+     
+    </div>
+ 
+  <script>
+   
+ 
+   function exportData() {
+  localStorage.setItem("exportContacts", "true"); // Store flag before navigation
+  window.location.href = "/user/contacts"; // Navigate to contacts page
+}
+ 
+
+ 
+ 
+  </script>
+</body>
+
+</html>

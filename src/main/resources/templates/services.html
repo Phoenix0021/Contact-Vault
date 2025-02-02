@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services - Contact Vault</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+  <div id="content" class="pt-2">
+  <!-- Hero Section -->
+  <section class="bg-blue-600 text-white   py-16">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4">Our Services</h1>
+      <p class="text-lg mb-8">Discover the range of services we offer to help you manage your contacts efficiently.</p>
+      <a href="#services" class="bg-white text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition duration-300">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Contact Management</h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">Efficiently manage all your contacts in one place. Add, edit, and delete contacts with ease.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read More</a>
+        </div>
+        <!-- Service 2 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Secure Storage</h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">Your contacts are stored securely with top-notch encryption and data protection measures.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read More</a>
+        </div>
+        <!-- Service 3 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Easy Access</h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">Access your contacts from any device, anywhere, anytime. Stay connected on the go.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="bg-gray-200 dark:bg-gray-800 py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Get Started with Contact Vault</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">Join thousands of users who trust Contact Vault to manage their contacts efficiently.</p>
+      <a href="/home" class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300">Home</a>
+    </div>
+  </section>
+</div>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
